@@ -13,15 +13,15 @@ def _validate_state(state):
     if state is None:
         return
     elif state.lower() not in states:
-        raise ValueError(f'Invalid state entered, \'{state}\'')
+        raise ValueError("Invalid state entered")
 
 
 def _validate_brewery_type(brewery_type):
     if brewery_type is None:
         return
     elif brewery_type not in brewery_types:
-        raise ValueError(f'Invalid brewery_type entered. Must be in '
-                         '{brewery_types}, but got \'{brewery_type}\'.')
+        raise ValueError('Invalid brewery_type entered. Must be in ' +
+                        '%s, but got %s.' % (brewery_types, brewery_type))
 
 
 def _format_request_params(state=None, city=None, brewery_type=None, page=None,
@@ -60,7 +60,7 @@ def timer(verbose=False):
     yield
     elapsed = default_timer() - start_time
     if verbose:
-        sys.stdout.write(f'\nTime elapsed: {elapsed:0.2f} sec')
+        #sys.stdout.write(f'\nTime elapsed: {elapsed:0.2f} sec')
         sys.stdout.flush()
 
 
@@ -113,8 +113,9 @@ def load(state=None, city=None, brewery_type=None, verbose=False):
 
             num_breweries += df.shape[0]
             if verbose:
-                msg = f'\rLoaded data for {num_breweries} breweries'
-                sys.stdout.write(msg)
+                #msg = f'\rLoaded data for {num_breweries} breweries'
+                msg = ""
+		sys.stdout.write(msg)
                 sys.stdout.flush()
 
             data.append(df)
